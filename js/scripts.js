@@ -21,16 +21,34 @@ $(function () {
 
     $('.star').on('click', function () {
         var idArticle = $('.article').attr('data-id');
-        var vote = $(this).attr('data-vote');
+        var points = $(this).attr('data-vote');
+        var votes = $('.votes').attr('data-votes');
 
         //console.log(idArticle);
         //console.log(vote);
 
-        //$.post('/sys/handler.php', {rate: 'sim', id: idArticle, points: vote});
+        $.ajax({
+            type: 'post',
+            url: '/handler.php',
+            datatype: 'json',
+            data: {
+                id: idArticle,
+                points: points,
+                votes: votes
+            }
+        })
+            .done(function (data) {
+                //console.log('Успешно отправили данные');
 
-        $.post('/handler.php', {id: idArticle, points: vote, votes: average}, function (itBack) {
-            ratings(itBack.average);
-            $('.votes span').html(itBack.votes);
-        }, 'jSON');
+                //$('.votes span').html(ratings(average));
+
+                //console.log(data);
+
+                console.log($('.votes span').html(data));
+
+            })
+            .fail(function () {
+                console.log('Ошибка отправки данных');
+            });
     });
 });

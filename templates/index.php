@@ -15,7 +15,7 @@
     <?php
     foreach ($articles as $article) { ?>
         <li>
-            <a href="/templates/single.php?id=<?php echo $article['id']; ?>"><?php echo $article['title']; ?></a>
+            <a href="/single.php?id=<?php echo $article['id']; ?>"><?php echo $article['title']; ?></a>
         </li>
         <?php
     }

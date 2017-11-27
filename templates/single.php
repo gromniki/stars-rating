@@ -1,5 +1,3 @@
-<?php require __DIR__ . '/../classes/DB.php'; ?>
-
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -13,16 +11,13 @@
 
 <body>
 <?php
-$id = (int)$_GET['id'];
 
-$db = new DB();
-
-foreach ($db->query('SELECT * FROM articles WHERE id = :id', [':id' => $id]) as $article) {
-    $calc = ($article['points'] == 0) ? 0 : round(($article['points'] / $article['votes']), 1);
+foreach ($article as $content) {
+    $calc = ($content['points'] == 0) ? 0 : round(($content['points'] / $content['votes']), 1);
     ?>
 
     <a href="/">Назад</a>
-    <h1><?php echo $article['title']; ?></h1>
+    <h1><?php echo $content['title']; ?></h1>
 
     <span class="ratingAverage" data-average="<?php echo $calc; ?>"></span>
     <span class="article" data-id="<?php echo $id; ?>"></span>
@@ -41,7 +36,7 @@ foreach ($db->query('SELECT * FROM articles WHERE id = :id', [':id' => $id]) as 
         </div>
     </div>
     <p class="average">Средняя оценка: <span><?php echo $calc ?: 'Нет оценки'; ?></span></p>
-    <p class="votes">Голосов: <span><?php echo $article['votes'] ?: 'Будь первым, кто проголосует'; ?></span></p>
+    <p class="votes" data-votes="<?php echo $content['votes']; ?>">Голосов: <span><?php echo $content['votes'] ?: 'Будь первым, кто проголосует'; ?></span></p>
 
     <?php
 }

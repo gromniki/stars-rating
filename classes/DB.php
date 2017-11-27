@@ -15,7 +15,7 @@ class DB
     {
         $sth = $this->dbh->prepare($sql);
         $result = $sth->execute($data);
-        if ($result === false) {
+        if (false === $result) {
             return false;
         }
         return true;
