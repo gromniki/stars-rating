@@ -12,7 +12,8 @@ if (isset($_POST['id'], $_POST['points'], $_POST['votes'])) {
     //echo 'Points: ' . $points;
     //echo 'Votes: ' . $votes';
 
-    $pointsInDB = $db->query('SELECT points FROM articles WHERE id = :id', [':id' => $id]);  //выскакаивает Notice, что массив не определён.
+    $pointsInDB = $db->query('SELECT points FROM articles WHERE id = :id', [':id' => $id]);  //выскакивает Notice,
+    // что массив не определён.
 
     $pointsUpd = ($pointsInDB['points'] + $points);
     $votesUpd = ($votes + 1);
