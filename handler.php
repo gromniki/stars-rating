@@ -12,10 +12,7 @@ if (isset($_POST['id'], $_POST['points'], $_POST['votes'])) {
     //echo 'Points: ' . $points;
     //echo 'Votes: ' . $votes';
 
-
-    $pointsInDB = $db->execute('SELECT points FROM articles WHERE id = :id', [':id' => $id]);  //не могу понять, почему всегда выводится 1
-
-    //var_dump('PointsInDB: ' . $pointsInDB);
+    $pointsInDB = $db->query('SELECT points FROM articles WHERE id = :id', [':id' => $id]);  //выскакаивает Notice, что массив не определён.
 
     $pointsUpd = ($pointsInDB['points'] + $points);
     $votesUpd = ($votes + 1);

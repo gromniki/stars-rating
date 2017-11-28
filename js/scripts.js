@@ -41,7 +41,6 @@ $(function () {
                 //console.log('Успешно отправили данные');
 
                 //$('.votes span').html(ratings(average));
-
                 //console.log(data);
 
                 console.log($('.votes span').html(data));
